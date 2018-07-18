@@ -46,29 +46,12 @@ auth_data = {
     'grant_type': 'client_credentials'
 }
 
-# try:
-#     print('Checking connection to ' + auth_url)
-#     test = requests.get(auth_url)
-#     print('Connection to ' + auth_url)
-# except requests.exceptions.SSLError as err:
-#     print('SSL Error. Adding custom certs to Certifi store...')
-#     cafile = certifi.where()
-#     with open('certicate.pem', 'rb') as infile:
-#         customca = infile.read()
-#     with open(cafile, 'ab') as outfile:
-#         outfile.write(customca)
-#     print('That might have worked.')
-
-
-
-
-
-print(auth_url)
-print(auth_headers)
-print(auth_data)
+# print(auth_url)
+# print(auth_headers)
+# print(auth_data)
 
 auth_resp = requests.post(auth_url, headers=auth_headers, data=auth_data)
-print(auth_resp.status_code)
+# print(auth_resp.status_code)
 
 
 
