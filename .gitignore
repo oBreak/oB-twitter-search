@@ -2,8 +2,5 @@
 .git/**
 conf/**
 
-twitter-app.py
-#until I extract the keys
-
 !conf/conf-example.ini
 
