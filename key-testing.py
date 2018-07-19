@@ -6,14 +6,9 @@ import sys
 
 
 
-
-
-
-
 conf = configparser.ConfigParser()
 conf.read('conf/conf.ini')
 
-# import relevant keys and secrets
 twconsumer_key        = conf['twitter-consumer-api-key']['value']
 twconsumer_secret     = conf['twitter-consumer-secret']['value']
 twaccesstoken         = conf['twitter-access-token']['value']
@@ -37,18 +32,9 @@ auth_headers = {
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 }
 
-# auth_headers = {
-#     'Authorization: Basic ' + key_secret,
-#     'Content-Type: application/x-www-form-urlencoded;charset=UTF-8'
-# }
-
 auth_data = {
     'grant_type': 'client_credentials'
 }
-
-# print(auth_url)
-# print(auth_headers)
-# print(auth_data)
 
 auth_resp = requests.post(auth_url, headers=auth_headers, data=auth_data)
 # print(auth_resp.status_code)
