@@ -3,4 +3,6 @@
 conf/**
 
 !conf/conf-example.ini
+!conf/search-terms.ini
+
 

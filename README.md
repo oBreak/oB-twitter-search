@@ -29,26 +29,29 @@ Callback URLs | <blank\>
 |Access Token Secret    |Example                     |
 
 Real keys and tokens will be found in the /conf/ 
-directory after adding them to the appropriate conf.ini file.
+directory after adding them to the appropriate key-conf.ini file.
 
 After creating the conf.ini modeled after the conf-example.ini included in
 this repository with the appropriate data, the program should automatically
 extract the keys and request a bearer token. This bearer token will be saved
-as bearer.token in the /conf/ directory and will be passed for future requests.
+as `bearer.token` in the `/conf/` directory and will be passed for future requests.
 
 ### Usage
 
-Currently the app is set to search based on the terms below. Edit these
-to whatever you would prefer to search for:
+Currently the app is set to search based on the terms in the `/conf/search.ini`. Edit 
+the `/conf/search-terms.ini` and save as `/conf/search.ini` to whatever you would 
+prefer to search for. Search parameter selection code (this can be edited to provide
+other search terms as desired):
 
     search_params = {
-        'q': 'Taylor Swift',
-        'result_type': 'recent',
-        'count': 2
+        'q':            terms['q']['value'],
+        'result_type':  terms['result_type']['value'],
+        'count':        terms['count']['value']
     }
 
 The app will then return the relevant data for those tweets as specified
-in the below section (both are found within the search() function).
+in the below section (both are found within the search() function). This
+section subject to change but will be preserved in the readme (for now).
 
     tweet_data = search_resp.json()
     for x in tweet_data['statuses']:
@@ -56,3 +59,12 @@ in the below section (both are found within the search() function).
         print('Text is: ' + x['text'] + '\n')
         print('Source is: ' + x['source'] + '\n')
         print('---------------------------------------')
+
+
+
+##### Notes to self:
+
+Add additional programmatic support for searching for other relevant tweet_data 
+components, or at least documentation on how to do it.
+
+

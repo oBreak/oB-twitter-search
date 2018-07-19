@@ -52,7 +52,7 @@ def readConf():
     global encodedkey
 
     conf = configparser.ConfigParser()
-    conf.read('conf/conf.ini')
+    conf.read('conf/key_conf.ini')
 
     twconsumer_key          = conf['twitter-consumer-api-key']['value']
     twconsumer_secret       = conf['twitter-consumer-secret']['value']
@@ -130,14 +130,23 @@ http://benalexkeen.com/interacting-with-the-twitter-api-using-python/
 https://dev.twitter.com/rest/reference/get/search/tweets
 '''
 def search():
+    '''
+    Pull search terms in from search-terms.ini
+        [q]
+        [result-type]
+        [count]
+    '''
+    terms = configparser.ConfigParser()
+    terms.read('conf/search.ini')
+
     search_headers = {
         'Authorization': 'Bearer {}'.format(bearertoken)
     }
 
     search_params = {
-        'q': 'Taylor Swift',
-        'result_type': 'recent',
-        'count': 2
+        'q':            terms['q']['value'],
+        'result_type':  terms['result_type']['value'],
+        'count':        terms['count']['value']
     }
 
     search_url = '{}1.1/search/tweets.json'.format(base_url)
