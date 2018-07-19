@@ -78,11 +78,6 @@ def generateBearer(x):
     twaccesstoken = conf['twitter-access-token']['value']
     twaccesstokensecret = conf['twitter-access-token-secret']['value']
 
-    print(twconsumer_key)
-    print(twconsumer_secret)
-    print(twaccesstoken)
-    print(twaccesstokensecret)
-
     # base64 encode the consumer key:secret pair
     key_secret = base64.urlsafe_b64encode('{}:{}'.format(twconsumer_key, twconsumer_secret).encode('UTF-8')).decode(
         'UTF-8')
