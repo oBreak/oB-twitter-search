@@ -41,7 +41,7 @@ as `bearer.token` in the `/conf/` directory and will be passed for future reques
 ### Usage
 
 Currently the app is set to search based on the terms in the `/conf/search.ini`. Edit 
-the `/conf/search-terms.ini` and save as `/conf/search.ini` to whatever you would 
+the `/conf/public-search-terms.ini` and save as `/conf/search.ini` to whatever you would 
 prefer to search for. Search parameter selection code (this can be edited to provide
 other search terms as desired):
 
