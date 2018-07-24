@@ -62,6 +62,7 @@ def readConf():
     return b64_encoded_key
 
 # Gets the bearer token, if it's not already stored. Note there are rate limitations on how often this can be done.
+# This following the Oauth2 authentication flow.
 def generateBearer(x):
     import configparser
     import requests
@@ -201,12 +202,18 @@ def returnDataNotLabeled(tweet_data):
         print('---------------------------------------')
     return
 
+def oauthFlow():
+    return
+
+
 def main():
     if bearerExists() == False:
         b64key = readConf()
         generateBearer(b64key)
     setBearer()
-    search() #Search is based on search() which will return data as specified in returnDataLabeled or returnDataNotLabeled as selected.
+    #search() #Search is based on search() which will return data as specified in returnDataLabeled or returnDataNotLabeled as selected.
+    oauthFlow()
+
     return
 
 main()
