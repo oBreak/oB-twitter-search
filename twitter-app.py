@@ -182,7 +182,7 @@ def returnDataLabeled(tweet_data):
             print('\nText is: ' + x['text'] + '\n')
             print('Source is: ' + x['source'] + '\n')
         except TypeError:
-            print('type')
+            print('Type error.')
         except KeyError:
             print('Key error.')
         print('---------------------------------------')
@@ -195,7 +195,7 @@ def returnDataNotLabeled(tweet_data):
             print(x['text'] + '\n')
             print(x['source'] + '\n')
         except TypeError:
-            print('type')
+            print('Type error.')
         except KeyError:
             print('Key error.')
         print('---------------------------------------')
