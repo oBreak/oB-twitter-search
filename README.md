@@ -38,10 +38,10 @@ Callback URLs | <blank\>
 |Access Token	        |Example                     |
 |Access Token Secret    |Example                     |
 
-Real keys and tokens will be found in the /conf/ 
-directory after adding them to the appropriate key-conf.ini file.
+Real keys and tokens will be found in the `/conf/`
+directory after adding them to the appropriate `key-conf.ini` file.
 
-After creating the conf.ini modeled after the conf-example.ini included in
+After creating the `key-conf.ini` modeled after the `key-conf-example.ini` included in
 this repository with the appropriate data, the program should automatically
 extract the keys and request a bearer token. This bearer token will be saved
 as `bearer.token` in the `/conf/` directory and will be passed for future requests.
@@ -59,7 +59,8 @@ other search terms as desired):
         'count':        terms['count']['value']
     }
 
-The app will then return the relevant data for those tweets as specified
+Where value will be something like 'Legos' or 'Popcorn'. The app will then return 
+the relevant data for those tweets as specified
 in the below section (both are found within the search() function). This
 section subject to change but will be preserved in the readme (for now).
 
