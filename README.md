@@ -6,7 +6,7 @@ oBreak ([email](mailto:obreakemail@gmail.com))
 
 ### Version 
 
-0.1
+0.2
 
 ### First time setup
 
