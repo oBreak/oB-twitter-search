@@ -4,11 +4,17 @@
 ways to search for data that is relevant to the user and to allow for twitter interactions,
 where this could be defined pretty broadly. This does signal a change from research to
 i/o, but the intent is to build up the research side (specificity, automation) while
-enabling some automation for the interaction side as well.
-
-Changes:
+enabling some automation for the interaction side as well. Changes:
 
 - Readme and changelog updated to contain new changes and relevant data.
+- Added prerequisite to download the requests_oauthlib module. This handles the Oauth1 interaction.
+- Added `oauthFlow()` function. This handles the Oauth1 interaction in passing the consumer
+key and secret + the user key and secret.
+- Added a small search to bring back a user timeline based on the parameters set in search.ini
+in the `param` value.
+- Added `interaction-testing.py` in the `/resources/` folder used for testing the oauth1 
+functionality outside of the context of the greater program. I think I will use this method
+for testing future features when I don't want to comment out a great deal of the program.
 - 
 
 0.1 - 07/24/18 - Completion of minimum viable script. There were a lot of changes so let's just
