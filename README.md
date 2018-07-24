@@ -14,7 +14,7 @@ First, create an application at apps.twitter.com. This is required to get a vali
 and secret in order to authenticate via OAuth to the Twitter API. Note, this requires
 that you have valid twitter credentials. A real or throwaway account is fine.
 
-Also requires Python 3.x installed with modules `configparser` and `requests` installed.
+Also requires Python 3.x installed with modules `configparser`, `requests_oauthlib` and `requests` installed.
 
 ##### Starting at the [Twitter App Creation Page](https://apps.twitter.com/app/new).
 
