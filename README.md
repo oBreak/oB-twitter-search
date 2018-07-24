@@ -1,5 +1,13 @@
 #Twitter API Searching
 
+### Author
+
+oBreak ([email](mailto:obreakemail@gmail.com))
+
+### Version 
+
+0.1
+
 ### First time setup
 
 First, create an application at apps.twitter.com. This is required to get a valid ID

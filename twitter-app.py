@@ -158,7 +158,7 @@ def search():
         created_at
         id_str
         text
-        entities: hashtags, indices, symbols, user_mentions, 
+        entities: hashtags, indices, symbols, user_mentions, etc
         user: id, id_str, name, screen_name, location, description, url, followers_count, friends_count, listed_count, created_at, favourites_count, etc.
         source
         geo_enabled
