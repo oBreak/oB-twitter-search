@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 '''
 Helpful reference: http://benalexkeen.com/interacting-with-the-twitter-api-using-python/
-
-
 '''
 
 import os
@@ -147,7 +145,7 @@ def search():
         'q':            terms['q']['value'],
         'result_type':  terms['result_type']['value'],
         'count':        terms['count']['value'],
-        'lang': 'en'
+        'lang': 'en' # Only returns English results. This can be removed.
     }
 
     search_url = '{}1.1/search/tweets.json'.format(base_url)
