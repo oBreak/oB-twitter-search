@@ -11,7 +11,8 @@ oBreak ([email](mailto:obreakemail@gmail.com))
 ### First time setup
 
 First, create an application at apps.twitter.com. This is required to get a valid ID
-and secret in order to authenticate via OAuth to the Twitter API.
+and secret in order to authenticate via OAuth to the Twitter API. Note, this requires
+that you have valid twitter credentials. A real or throwaway account is fine.
 
 Also requires Python 3.x installed with modules `configparser` and `requests` installed.
 
@@ -59,8 +60,8 @@ other search terms as desired):
         'count':        terms['count']['value']
     }
 
-Where value will be something like 'Legos' or 'Popcorn'. The app will then return 
-the relevant data for those tweets as specified
+Where value will be stored in the config as something like 'Legos' or 'Popcorn'. 
+The app will then return the relevant data for those tweets as specified
 in the below section (both are found within the search() function). This
 section subject to change but will be preserved in the readme (for now).
 
