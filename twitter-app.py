@@ -146,7 +146,8 @@ def search():
     search_params = {
         'q':            terms['q']['value'],
         'result_type':  terms['result_type']['value'],
-        'count':        terms['count']['value']
+        'count':        terms['count']['value'],
+        'lang': 'en'
     }
 
     search_url = '{}1.1/search/tweets.json'.format(base_url)
@@ -154,11 +155,51 @@ def search():
     print('---------------------------------------')
     search_resp = requests.get(search_url, headers=search_headers, params=search_params)
     tweet_data = search_resp.json()
+    '''
+    Prints all relevant data for keys and values. This can help inform the data you want to return. Examples are:
+        created_at
+        id_str
+        text
+        entities: hashtags, indices, symbols, user_mentions, 
+        user: id, id_str, name, screen_name, location, description, url, followers_count, friends_count, listed_count, created_at, favourites_count, etc.
+        source
+        geo_enabled
+        lang
+        profile_image_url_https
+        profile_banner_url
+        possibly_sensitive
+        
+    For multi-part (nested dictionary values, in python-speak) attributes, usage is print(x['top level']['next level']) like x['user']['id_str']
+    Careful of using id as it is type int, not str
+    '''
+    # for key in tweet_data['statuses']:
+    #     print (key)
+    returnDataNotLabeled(tweet_data)
+    return
+
+def returnDataLabeled(tweet_data):
     for x in tweet_data['statuses']:
-        print('User is: ' + 'sample')
-        print('Text is: ' + x['text'] + '\n')
-        print('Source is: ' + x['source'] + '\n')
-#        print(x['user'] + '\n')
+        try:
+            print('User (screen_name, name, id): ' + x['user']['screen_name'] + '\t|\t' + x['user']['name'] + '\t|\t' + x['user']['id_str'])
+            print('\nText is: ' + x['text'] + '\n')
+            print('Source is: ' + x['source'] + '\n')
+        except TypeError:
+            print('type')
+        except KeyError:
+            print('Key error.')
+        print('---------------------------------------')
+    return
+
+def returnDataNotLabeled(tweet_data):
+    for x in tweet_data['statuses']:
+        try:
+            print(x['user']['screen_name'] + '\t|\t' + x['user']['name'] + '\t|\t' + x['user']['id_str'])
+            print(x['text'] + '\n')
+            print(x['source'] + '\n')
+        except TypeError:
+            print('type')
+        except KeyError:
+            print('Key error.')
         print('---------------------------------------')
     return
 
@@ -167,7 +208,7 @@ def main():
         b64key = readConf()
         generateBearer(b64key)
     setBearer()
-    search()
+    search() #Search is based on search() which will return data as specified in returnDataLabeled or returnDataNotLabeled as selected.
     return
 
 main()
