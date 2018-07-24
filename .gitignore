@@ -2,7 +2,7 @@
 .git/**
 conf/**
 
-!conf/conf-example.ini
-!conf/search-terms.ini
+!conf/key-conf-example.ini
+!conf/public-search-terms.ini
 
 
