@@ -57,7 +57,7 @@ section subject to change but will be preserved in the readme (for now).
 
     tweet_data = search_resp.json()
     for x in tweet_data['statuses']:
-        print('User is: ' + 'sample')
+        print('User screenname is: ' + x['user']['screen_name'])
         print('Text is: ' + x['text'] + '\n')
         print('Source is: ' + x['source'] + '\n')
         print('---------------------------------------')
