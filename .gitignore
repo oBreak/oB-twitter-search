@@ -1,7 +1,11 @@
 .idea/**
 .git/**
 conf/**
+debug/**
+out/**
 
+!out/example.log
+!debug/example.log
 !conf/key-conf-example.ini
 !conf/public-search-terms.ini
 
