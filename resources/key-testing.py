@@ -7,7 +7,7 @@ import sys
 
 
 conf = configparser.ConfigParser()
-conf.read('conf/conf.ini')
+conf.read('../conf/key-conf.ini')
 
 twconsumer_key        = conf['twitter-consumer-api-key']['value']
 twconsumer_secret     = conf['twitter-consumer-secret']['value']
