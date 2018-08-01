@@ -19,14 +19,6 @@ base_url                    = 'https://api.twitter.com/'
 tweets                      = []
 debug                       = []
 
-'''
-readConf() is established to read the configuration file for the relevant keys and secrets in order to 
-retrieve the bearer token (This is needed for application-only requests).
-
-Returns the b64_encoded_key that needs to be sent with the request for the bearer token.
-
-The bearer token should be STORED, not requested with each request.
-'''
 
 def bearerExists():
     try:
@@ -40,6 +32,15 @@ def bearerExists():
     if x == True:
         debug.append('Bearer token exists in /conf/ directory. Importing...')
     return x
+
+'''
+readConf() is established to read the configuration file for the relevant keys and secrets in order to 
+retrieve the bearer token (This is needed for application-only requests).
+
+Returns the b64_encoded_key that needs to be sent with the request for the bearer token.
+
+The bearer token should be STORED, not requested with each request.
+'''
 
 def readConf():
     global conf
@@ -144,9 +145,9 @@ def appOnlyAuthSearch(): # Uses OAuth2
     }
 
     search_params = {
-        'q':            terms['q']['value'],
-        'result_type':  terms['result_type']['value'],
-        'count':        terms['count']['value'],
+        'q':            terms['oauth2_params']['q'],
+        'result_type':  terms['oauth2_params']['result_type'],
+        'count':        terms['oauth2_params']['count'],
         'lang': 'en' # Only returns English results. This can be removed.
     }
 
@@ -228,7 +229,7 @@ def searchConfigImport():
     global searchconf
     searchconf = configparser.ConfigParser()
     searchconf.read('conf/search.ini')
-    search_param = searchconf['param']['value']
+    search_param = searchconf['oauth_params']['param']
     return
 
 def oauthFlow():
@@ -289,7 +290,7 @@ def oauthFlow():
     return
 
 def oauth1search():
-    search_param = searchconf['param']['value']
+    search_param = searchconf['oauth_params']['param']
     searchurl = 'https://api.twitter.com/1.1/statuses/user_timeline.json' + search_param
     debug.append(searchurl)
     r = requests.get(searchurl, auth=oauth1_auth)
@@ -373,16 +374,13 @@ def main():
     oauthFlow()
 
     # Search functions
-
     appOnlyAuthSearch()
     #oauth1search()
 
     # Writing Results
-
     debugOut()
     #tweetsOutPrint()
     tweetsOutFile()
-
     return
 
 main()

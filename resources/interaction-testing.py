@@ -48,7 +48,7 @@ def oauthFlow():
         print('Did not load search configuration.')
 
     # The easy way.
-    search_param            = searchconf['param']['value']
+    search_param            = searchconf['oauth_params']['param']
     oauth1_auth = OAuth1(twconsumer_key,twconsumer_secret,twaccesstoken,twaccesstokensecret)
 
     r = requests.get('https://api.twitter.com/1.1/statuses/user_timeline.json'+ search_param, auth=oauth1_auth)
