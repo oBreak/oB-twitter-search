@@ -5,7 +5,7 @@
 
 oBreak ([email](mailto:obreakemail@gmail.com))
 
-### Version 
+### Version
 
 0.2
 

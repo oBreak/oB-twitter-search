@@ -2,7 +2,7 @@
 
 0.3 - TBD
 
--
+- 
 
 0.2 - 07/25/18 - The goal of this branch is to incorporate better
 ways to search for data that is relevant to the user and to allow for twitter interactions,
