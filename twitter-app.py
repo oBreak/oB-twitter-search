@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 '''
 Helpful reference: http://benalexkeen.com/interacting-with-the-twitter-api-using-python/
+which spawned some of this.
 '''
 
 import os
@@ -30,14 +31,12 @@ The bearer token should be STORED, not requested with each request.
 def bearerExists():
     try:
         # Open bearer file
-        pass
         g = open('conf/bearer.token')
         x = True
     except FileNotFoundError:
         # Send error
         debug.append('Error, bearer token not found.')
         x = False
-        pass
     if x == True:
         debug.append('Bearer token exists in /conf/ directory. Importing...')
     return x
@@ -54,10 +53,10 @@ def readConf():
     conf = configparser.ConfigParser()
     conf.read('conf/key_conf.ini')
 
-    twconsumer_key          = conf['twitter-consumer-api-key']['value']
-    twconsumer_secret       = conf['twitter-consumer-secret']['value']
-    twaccesstoken           = conf['twitter-access-token']['value']
-    twaccesstokensecret     = conf['twitter-access-token-secret']['value']
+    twconsumer_key          = conf['oauth_keys']['twitter-consumer-api-key']
+    twconsumer_secret       = conf['oauth_keys']['twitter-consumer-secret']
+    twaccesstoken           = conf['oauth_keys']['twitter-access-token']
+    twaccesstokensecret     = conf['oauth_keys']['twitter-access-token-secret']
     encodedkey              = '{}:{}'.format(twconsumer_key, twconsumer_secret).encode('ascii')
     b64_encoded_key         = base64.b64encode(encodedkey)
     b64_encoded_key         = b64_encoded_key.decode('ascii')
@@ -74,10 +73,10 @@ def generateBearer(x):
     conf.read('conf/conf.ini')
 
     # import relevant keys and secrets
-    twconsumer_key = conf['twitter-consumer-api-key']['value']
-    twconsumer_secret = conf['twitter-consumer-secret']['value']
-    twaccesstoken = conf['twitter-access-token']['value']
-    twaccesstokensecret = conf['twitter-access-token-secret']['value']
+    twconsumer_key          = conf['oauth_keys']['twitter-consumer-api-key']
+    twconsumer_secret       = conf['oauth_keys']['twitter-consumer-secret']
+    twaccesstoken           = conf['oauth_keys']['twitter-access-token']
+    twaccesstokensecret     = conf['oauth_keys']['twitter-access-token-secret']
 
     # base64 encode the consumer key:secret pair
     key_secret = base64.urlsafe_b64encode('{}:{}'.format(twconsumer_key, twconsumer_secret).encode('UTF-8')).decode(
@@ -220,10 +219,10 @@ def keyImport():
     else:
         debug.append('Did not load configuration from key-conf.ini.')
 
-    twconsumer_key = keyconf['twitter-consumer-api-key']['value']
-    twconsumer_secret = keyconf['twitter-consumer-secret']['value']
-    twaccesstoken = keyconf['twitter-access-token']['value']
-    twaccesstokensecret = keyconf['twitter-access-token-secret']['value']
+    twconsumer_key          = keyconf['oauth_keys']['twitter-consumer-api-key']
+    twconsumer_secret       = keyconf['oauth_keys']['twitter-consumer-secret']
+    twaccesstoken           = keyconf['oauth_keys']['twitter-access-token']
+    twaccesstokensecret     = keyconf['oauth_keys']['twitter-access-token-secret']
 
 def searchConfigImport():
     global searchconf
