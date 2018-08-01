@@ -21,13 +21,18 @@ debug                       = []
 
 
 def bearerExists():
+    x = False
     try:
         # Open bearer file
-        g = open('conf/bearer.token')
+        g = open(bearertokenfile)
         x = True
+        for y in g.readlines():
+            if y == '':
+                x = False
+                debug.append('Error, bearer token is empty, regenerating.')
     except FileNotFoundError:
         # Send error
-        debug.append('Error, bearer token not found.')
+        debug.append('Error, bearer token file not found during bearerExists() verification.')
         x = False
     if x == True:
         debug.append('Bearer token exists in /conf/ directory. Importing...')
@@ -52,7 +57,7 @@ def readConf():
     global encodedkey
 
     conf = configparser.ConfigParser()
-    conf.read('conf/key_conf.ini')
+    conf.read('conf/key-conf.ini')
 
     twconsumer_key          = conf['oauth_keys']['twitter-consumer-api-key']
     twconsumer_secret       = conf['oauth_keys']['twitter-consumer-secret']
@@ -61,6 +66,7 @@ def readConf():
     encodedkey              = '{}:{}'.format(twconsumer_key, twconsumer_secret).encode('ascii')
     b64_encoded_key         = base64.b64encode(encodedkey)
     b64_encoded_key         = b64_encoded_key.decode('ascii')
+    print('b64_encoded_key is: ' + b64_encoded_key)
     return b64_encoded_key
 
 # Gets the bearer token, if it's not already stored. Note there are rate limitations on how often this can be done.
@@ -71,17 +77,17 @@ def generateBearer(x):
     import base64
 
     conf = configparser.ConfigParser()
-    conf.read('conf/conf.ini')
+    conf.read('conf/key-conf.ini')
 
-    # import relevant keys and secrets
-    twconsumer_key          = conf['oauth_keys']['twitter-consumer-api-key']
-    twconsumer_secret       = conf['oauth_keys']['twitter-consumer-secret']
-    twaccesstoken           = conf['oauth_keys']['twitter-access-token']
-    twaccesstokensecret     = conf['oauth_keys']['twitter-access-token-secret']
-
-    # base64 encode the consumer key:secret pair
-    key_secret = base64.urlsafe_b64encode('{}:{}'.format(twconsumer_key, twconsumer_secret).encode('UTF-8')).decode(
-        'UTF-8')
+    # # import relevant keys and secrets
+    # twconsumer_key          = conf['oauth_keys']['twitter-consumer-api-key']
+    # twconsumer_secret       = conf['oauth_keys']['twitter-consumer-secret']
+    # twaccesstoken           = conf['oauth_keys']['twitter-access-token']
+    # twaccesstokensecret     = conf['oauth_keys']['twitter-access-token-secret']
+    #
+    # # base64 encode the consumer key:secret pair
+    # key_secret = base64.urlsafe_b64encode('{}:{}'.format(twconsumer_key, twconsumer_secret).encode('UTF-8')).decode(
+    #     'UTF-8')
 
     # set the url
     base_url = 'https://api.twitter.com/'
@@ -89,7 +95,7 @@ def generateBearer(x):
 
     # set auth headers
     auth_headers = {
-        'Authorization': 'Basic {}'.format(key_secret),
+        'Authorization': 'Basic {}'.format(x),
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     }
 
@@ -98,31 +104,43 @@ def generateBearer(x):
     }
 
     auth_resp = requests.post(auth_url, headers=auth_headers, data=auth_data)
-    #print(auth_resp.status_code)
+    debug.append(auth_headers)
+    debug.append(auth_resp.status_code)
 
     if auth_resp.status_code == 403:
         debug.append('403 code response!')
         debug.append('Operation failed.')
     if auth_resp.status_code == 200:
         debug.append('200 code response!')
-        debug.append('Operation successful retrieval of bearer token.')
+        debug.append('Operation successful, retrieval of bearer token complete.')
         bearer_token = auth_resp.json()['access_token']
+        #print(bearer_token)
         try:
             f = open(bearertokenfile, 'w')
             debug.append('')
-            debug.append('\tSetting output file,', bearertokenfile)
+            debug.append('Setting output file,' + bearertokenfile)
             debug.append('')
         except:
-            debug.append("\tFailed to open output file!")
+            debug.append("Failed to open output file!")
             f.close()
-        f.write(bearer_token)
+        try:
+            f.write(bearertoken)
+        except ValueError:
+            debug.append('Could not write to bearer.token file.')
     return
 
 def setBearer():
     global bearertoken
-    g = open('conf/bearer.token')
-    bearertoken = g.readline()
-    debug.append('Bearer token imported successfully.')
+    try:
+        g = open(bearertokenfile, 'r')
+        debug.append('')
+        debug.append('Using bearer infile, ' + bearertokenfile)
+        debug.append('')
+        bearertoken = g.readline()
+        g.close()
+        debug.append('Bearer token imported successfully.')
+    except:
+        print("Failed to open infile!")
     return
 
 '''
@@ -130,7 +148,7 @@ Searching for the tweets.
 http://benalexkeen.com/interacting-with-the-twitter-api-using-python/
 https://dev.twitter.com/rest/reference/get/search/tweets
 '''
-def appOnlyAuthSearch(): # Uses OAuth2
+def app_only_auth_search(): # Uses OAuth2
     '''
     Pull search terms in from search-terms.ini
         [q]
@@ -173,9 +191,46 @@ def appOnlyAuthSearch(): # Uses OAuth2
     For multi-part (nested dictionary values, in python-speak) attributes, usage is print(x['top level']['next level']) like x['user']['id_str']
     Careful of using id as it is type int, not str
     '''
+    try:
+        print(tweet_data['errors'])
+    except:
+        debug.append('No errors in app_only_auth_search().')
     # for key in tweet_data['statuses']:
     #     print (key)
     returnDataNotLabeled(tweet_data)
+    return
+
+
+def app_only_auth_fulldata(x):  # Uses OAuth2
+    status_id = x
+    '''
+    Pull search terms in from search.ini
+    '''
+    terms = configparser.ConfigParser()
+    terms.read('conf/search.ini')
+
+    search_headers = {
+        'Authorization': 'Bearer {}'.format(bearertoken)
+    }
+    debug.append(search_headers)
+    search_url = ('https://api.twitter.com/1.1/statuses/show.json?id=' + status_id)
+    debug.append(search_url)
+    debug.append('Executing search using Application-only (OAUTH2) Authentication...')
+    debug.append('---------------------------------------')
+    search_resp = requests.get(search_url, headers=search_headers)
+    debug.append('Response code ' + str(search_resp.status_code))
+    tweet_data = search_resp.json()
+    keys = []
+    for thing in tweet_data:
+        keys.append(thing)
+    for key in keys:
+        key = str(key)
+        try:
+            tweets.append('-'*60)
+            tweets.append(key)
+            tweets.append(tweet_data[key])
+        except KeyError:
+            print('Did not work, key error in function app_only_auth_fulldata()')
     return
 
 def returnDataLabeled(tweet_data):
@@ -289,7 +344,7 @@ def oauthFlow():
     # G.) Consumer Accesses Protected Resources
     return
 
-def oauth1search():
+def oauth1selfsearch():
     search_param = searchconf['oauth_params']['param']
     searchurl = 'https://api.twitter.com/1.1/statuses/user_timeline.json' + search_param
     debug.append(searchurl)
@@ -300,6 +355,29 @@ def oauth1search():
             tweets.append('-'*60)
             tweets.append(tweet['text'])
             tweets.append('\nid_str: ' + tweet['id_str'])
+    return
+
+'''
+Note you cannot post more than 300 per user or 300 per app. Combined limit for POST statuses/update
+endpoint. Can only post 300 tweets or retweets during a 3 hour period.
+
+Creates tweet based on searchconf['oauth_params']['statusPost']
+'''
+def oauth1createtweet():
+    statusPost = searchconf['oauth_params']['statusPost']
+    posturl = 'https://api.twitter.com/1.1/statuses/update.json?status=' + statusPost
+    r = requests.post(posturl, auth=oauth1_auth)
+    debug.append('Status code for posting tweet was code: ' + str(r.status_code))
+    return
+
+'''
+Creates tweet based on searchconf['oauth_params']['destroy_status_id']
+'''
+def oauth1deletetweet():
+    destroy_status_id = searchconf['oauth_params']['destroy_status_id']
+    destroyurl = 'https://api.twitter.com/1.1/statuses/destroy/' + destroy_status_id + '.json'
+    r = requests.post(destroyurl, auth=oauth1_auth)
+    debug.append('Status code for deleting tweet with id ' + destroy_status_id + ' was code: ' + str(r.status_code))
     return
 
 def debugOut():
@@ -364,22 +442,28 @@ def tweetsOutFile():
     return
 
 def main():
+    global bearertoken
     # Set up OAuth1 and OAuth2 flows.
     keyImport()
     searchConfigImport()
     if bearerExists() == False:
+        debug.append('Bearer does not exist, entering bearer generation workflow.')
         b64key = readConf()
         generateBearer(b64key)
     setBearer()
     oauthFlow()
 
-    # Search functions
-    appOnlyAuthSearch()
-    #oauth1search()
+    # Interaction functions
+    # app_only_auth_search()
+    # app_only_auth_fulldata(searchconf['oauth2_params']['tweet_id_fulldata'])   # x is the tweet status
+    oauth1selfsearch()
+    # oauth1createtweet()
+    # oauth1deletetweet()
+
 
     # Writing Results
     debugOut()
-    #tweetsOutPrint()
+    # tweetsOutPrint()
     tweetsOutFile()
     return
 

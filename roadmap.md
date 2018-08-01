@@ -14,15 +14,21 @@ components, or at least documentation on how to do it.
 
 ##### Functions:
 
-- Capture own tweets
 - Capture tweets of specific user
+- Capture ALL DATA from a tweet
 - Live-stream tweets from a specific user or with a specific word/phrase
-- Post tweets as self
 - Interact with tweets (like, favorite, retweet) based on criteria
 - Delete tweets as self based on criteria, (say for instance, cleaning up 
 tweets with cursing)
+- Support for posting tweets with content (attachments, links, hashtags, etc.)
 
 ##### Completed:
 
 - [Complete] Add userID to returned results
 - [Complete] Add username to returned results
+- [Complete] Function to capture own tweets
+- [Complete] Function to create own tweets
+- [Complete] Function to delete own tweets
+- [Complete] Function to return all keys from tweet
+
+
