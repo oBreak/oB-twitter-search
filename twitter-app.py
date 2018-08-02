@@ -289,7 +289,8 @@ def searchConfigImport():
 
 def oauthFlow():
     global oauth1_auth
-    '''Steps:
+    '''
+    Steps:
 
     A.) Consumer requests REQUEST TOKEN
     B.) Service provider grants REQUEST TOKEN
@@ -310,25 +311,11 @@ def oauthFlow():
         oauth_callback
     '''
 
-    # keyconf = configparser.ConfigParser()
-    # keyconf.read('conf/key-conf.ini')
-    # if keyconf:
-    #     print('Loaded key-conf.ini')
-    # else:
-    #     print('Did not load configuration.')
-
     searchconf = configparser.ConfigParser()
     searchconf.read('conf/search.ini')
 
     # The easy way.
     oauth1_auth = OAuth1(twconsumer_key, twconsumer_secret, twaccesstoken, twaccesstokensecret)
-
-    # destroy_status_id = searchconf['destroy_status_id']['value']
-    # destroyurl = 'https://api.twitter.com/1.1/statuses/destroy/' + destroy_status_id + '.json'
-    # r = requests.post(destroyurl, auth=oauth1_auth)
-    # if r.json():
-    #     for thing in r.json():
-    #         print(thing)
 
     # The hard way.
 
@@ -454,9 +441,9 @@ def main():
     oauthFlow()
 
     # Interaction functions
-    # app_only_auth_search()
+    app_only_auth_search()
     # app_only_auth_fulldata(searchconf['oauth2_params']['tweet_id_fulldata'])   # x is the tweet status
-    oauth1selfsearch()
+    # oauth1selfsearch()
     # oauth1createtweet()
     # oauth1deletetweet()
 
