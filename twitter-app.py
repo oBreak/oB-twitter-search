@@ -349,12 +349,19 @@ def oauth1selfsearch():
     searchurl = 'https://api.twitter.com/1.1/statuses/user_timeline.json' + search_param
     debug.append(searchurl)
     r = requests.get(searchurl, auth=oauth1_auth)
-
-    if r.json():
-        for tweet in r.json():
-            tweets.append('-'*60)
-            tweets.append(tweet['text'])
-            tweets.append('\nid_str: ' + tweet['id_str'])
+    for thing in r:
+        print (thing)
+    debug.append(oauth1_auth)
+    # tweet_data = r.json()
+    # if tweet_data:
+    #     for tweet in tweet_data:
+    #         try:
+    #             tweets.append('-'*60)
+    #             tweets.append(tweet['text'])
+    #             tweets.append('\nid_str: ' + tweet['id_str'])
+    #         except TypeError:
+    #             debug.append('Type error received in oauth1selfsearch(); this may be caused by searching for a '
+    #                          'username that does not exist or because authentication failed.')
     return
 
 '''
