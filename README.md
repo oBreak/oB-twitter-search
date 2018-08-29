@@ -91,18 +91,26 @@ debugOut() function start.
 ##### Example out log
 
 ```
-tesla_bruh	|	🇬🇭Rakim Jnr🇧🇪	|	447078017
-@Bc_blackchrome I choose both, if there's ever a fight, I sit them down and tell them that though I love them deepl… https://t.co/kkpN0xDKLX
+PistachiosUK	|	Pistachios_UK	|	266500563
+100g of Wonderful Almonds is a healthy snack full of nutrients including Vitamin E, contributing to the protection… https://t.co/vQuTeaKCZ6
 
-https://twitter.com/tesla_bruh/status/1034813682981715968
-<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>
+https://twitter.com/PistachiosUK/status/1034813926133907456
+<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>
 
 ---------------------------------------
-FettGeo	|	Elric the Damned	|	763507025556934656
-RT @temp_worker: Must read regarding $TSLA part shortage @Trumpery45.
-Rear ended Model S waiting 5.5 months and counting for parts while ow…
+Seahawk1994	|	Seahawk Not Down	|	721631865866711040
+@WozzieWasEre @discordspies For being "activated", their almonds look like they're past their expiration date.
 
-https://twitter.com/FettGeo/status/1034813673049489408
+https://twitter.com/Seahawk1994/status/1034813900045393920
+<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>
+
+---------------------------------------
+Bryson_Dowler	|	Bryclops @DragonCon	|	567777024
+RT @thedad: God: what are they doing down there?
+Angel: they are making milk from almonds
+God: what?! I gave them, like, 8 animals to get m…
+
+https://twitter.com/Bryson_Dowler/status/1034813854449127425
 <a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
 
 ---------------------------------------
