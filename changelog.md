@@ -16,6 +16,9 @@ dynamically updated by the program based on some search criteria.
 - Created `app_only_auth_fulldata()` to pull all data for a single tweet, integration with
 the config files.
 - Fixed errors in pulling the correct filename for the config file.
+- Cleaned up output of debug file. Functions are now top level and messages within the
+function are now tabbed in for easier reading. All functions now announce that they have
+started within the debug output.
 
 
 0.2 - 07/25/18 - The goal of this branch is to incorporate better
