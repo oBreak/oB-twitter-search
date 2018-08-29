@@ -9,10 +9,10 @@ import sys
 conf = configparser.ConfigParser()
 conf.read('../conf/key-conf.ini')
 
-twconsumer_key        = conf['twitter-consumer-api-key']['value']
-twconsumer_secret     = conf['twitter-consumer-secret']['value']
-twaccesstoken         = conf['twitter-access-token']['value']
-twaccesstokensecret   = conf['twitter-access-token-secret']['value']
+twconsumer_key = keyconf['oauth_keys']['twitter-consumer-api-key']
+twconsumer_secret = keyconf['oauth_keys']['twitter-consumer-secret']
+twaccesstoken = keyconf['oauth_keys']['twitter-access-token']
+twaccesstokensecret = keyconf['oauth_keys']['twitter-access-token-secret']
 
 print(twconsumer_key)
 print(twconsumer_secret)

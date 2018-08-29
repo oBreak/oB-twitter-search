@@ -11,10 +11,10 @@ def oauthFlow():
     else:
         print('Did not load configuration.')
 
-    twconsumer_key          = conf['twitter-consumer-api-key']['value']
-    twconsumer_secret       = conf['twitter-consumer-secret']['value']
-    twaccesstoken           = conf['twitter-access-token']['value']
-    twaccesstokensecret     = conf['twitter-access-token-secret']['value']
+    twconsumer_key          = keyconf['oauth_keys']['twitter-consumer-api-key']
+    twconsumer_secret       = keyconf['oauth_keys']['twitter-consumer-secret']
+    twaccesstoken           = keyconf['oauth_keys']['twitter-access-token']
+    twaccesstokensecret     = keyconf['oauth_keys']['twitter-access-token-secret']
 
     '''
     
@@ -48,7 +48,7 @@ def oauthFlow():
         print('Did not load search configuration.')
 
     # The easy way.
-    search_param            = searchconf['param']['value']
+    search_param            = searchconf['oauth_params']['param']
     oauth1_auth = OAuth1(twconsumer_key,twconsumer_secret,twaccesstoken,twaccesstokensecret)
 
     r = requests.get('https://api.twitter.com/1.1/statuses/user_timeline.json'+ search_param, auth=oauth1_auth)
