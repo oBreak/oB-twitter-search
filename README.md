@@ -7,7 +7,7 @@ oBreak ([email](mailto:obreakemail@gmail.com))
 
 ### Version
 
-0.2
+0.3
 
 ### First time setup
 
@@ -62,9 +62,66 @@ other search terms as desired):
     }
 
 Where value will be stored in the config as something like 'Legos' or 'Popcorn'. 
-The app will then return the relevant data for those tweets as specified
-in the below section (both are found within the search() function). This
-section subject to change but will be preserved in the readme (for now).
+The app will then return the relevant data for those tweets.
+ 
+Output will be dropped in the `/out/` folder and logs of the application
+working (to include OAuth, searching, variable values, etc.) will
+go to the `/debug/` folder with a timestamp.
+
+##### Example debug log
+
+```main() function start.
+keyImport() function start.
+	Loaded key-conf.ini
+searchConfigImport() function start.
+bearerExists() function start.
+	Bearer token exists in /conf/ directory. Importing...
+setBearer() function start.
+	Using bearer infile, conf/bearer.token
+	Bearer token imported successfully.
+oauthFlow() function start.
+app_only_auth_search() function start.
+	Executing search using Application-only (OAUTH2) Authentication...
+	---------------------------------------
+	No errors in app_only_auth_search().
+returnDataNotLabeled() function start.
+debugOut() function start.
+```
+
+##### Example out log
+
+```
+PistachiosUK	|	Pistachios_UK	|	266500563
+100g of Wonderful Almonds is a healthy snack full of nutrients including Vitamin E, contributing to the protection… https://t.co/vQuTeaKCZ6
+
+https://twitter.com/PistachiosUK/status/1034813926133907456
+<a href="https://about.twitter.com/products/tweetdeck" rel="nofollow">TweetDeck</a>
+
+---------------------------------------
+Seahawk1994	|	Seahawk Not Down	|	721631865866711040
+@WozzieWasEre @discordspies For being "activated", their almonds look like they're past their expiration date.
+
+https://twitter.com/Seahawk1994/status/1034813900045393920
+<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>
+
+---------------------------------------
+Bryson_Dowler	|	Bryclops @DragonCon	|	567777024
+RT @thedad: God: what are they doing down there?
+Angel: they are making milk from almonds
+God: what?! I gave them, like, 8 animals to get m…
+
+https://twitter.com/Bryson_Dowler/status/1034813854449127425
+<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
+
+---------------------------------------
+
+```
+
+##### Preserved output (no longer relevant)
+ 
+...as specified in the below section (both are found within the search() 
+function). This section subject to change but will be preserved in the 
+readme (for now).
 
     tweet_data = search_resp.json()
     for x in tweet_data['statuses']:

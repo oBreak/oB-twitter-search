@@ -2,7 +2,24 @@
 
 0.3 - TBD
 
-- 
+- Created `oauth1selfsearch()` to do a list of last ten tweets of the user timeline. This is
+for the user named in `search.ini` under `param=`.
+- Created `oauth1createtweet()` to create tweets based on criteria in config file.
+- Created `oauth1deletetweet()` to delete specified tweets.
+- Edited configuration file to support new functions.
+- Created `delete_ids.ini` file in the `/conf/` directory. This can store a collection of 
+tweets to destroy. For example, run a filter on posted tweets and delete all tweets
+that mention Taylor Swift because her people are coming after you. Intent is to have this
+dynamically updated by the program based on some search criteria.
+- Changelog, roadmap, and readme updated
+- Renamed function to `app_only_auth_search()`
+- Created `app_only_auth_fulldata()` to pull all data for a single tweet, integration with
+the config files.
+- Fixed errors in pulling the correct filename for the config file.
+- Cleaned up output of debug file. Functions are now top level and messages within the
+function are now tabbed in for easier reading. All functions now announce that they have
+started within the debug output.
+
 
 0.2 - 07/25/18 - The goal of this branch is to incorporate better
 ways to search for data that is relevant to the user and to allow for twitter interactions,
