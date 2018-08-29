@@ -91,64 +91,21 @@ debugOut() function start.
 ##### Example out log
 
 ```
-mariamoralescr	|	Maria Morales 🇨🇷	|	710994290
-RT @EveningStandard: K-pop boyband BTS have broken Taylor Swift's record for the biggest music video debut on YouTube https://t.co/S0YK2eah…
+tesla_bruh	|	🇬🇭Rakim Jnr🇧🇪	|	447078017
+@Bc_blackchrome I choose both, if there's ever a fight, I sit them down and tell them that though I love them deepl… https://t.co/kkpN0xDKLX
 
-https://twitter.com/mariamoralescr/status/1034813006260170752
-<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
-
----------------------------------------
-jeddddddi	|	jedi	|	952475242676436992
-RT @brando_swift: Must Protect Taylor Swift At All Costs™ Squad
-
-https://twitter.com/jeddddddi/status/1034813001935740928
-<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
-
----------------------------------------
-liamchxnel	|	sebastian	|	742716541704245248
-RT @iknowplacesmp3: 🗣| UPDATE|| My sources say that Taylor Swift was recently in Nashville, filming. Is it for Gorgeous? Getaway Car? I Did…
-
-https://twitter.com/liamchxnel/status/1034812974958108672
-<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
-
----------------------------------------
-HaleyRatica	|	Haley Ratica wants to meet Taylor	|	589534481
-RT @mashleighh: Taylor Swift deserves to feel &amp; be safe like every other person. Her fame shouldn’t change that. Please speak up if you see…
-
-https://twitter.com/HaleyRatica/status/1034812973401948160
-<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
-
----------------------------------------
-NUDi4RizKb0Zjjo	|	💜보라해💜	|	871247419635245056
-RT @EveningStandard: K-pop boyband BTS have broken Taylor Swift's record for the biggest music video debut on YouTube https://t.co/S0YK2eah…
-
-https://twitter.com/NUDi4RizKb0Zjjo/status/1034812953982251008
+https://twitter.com/tesla_bruh/status/1034813682981715968
 <a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>
 
 ---------------------------------------
-empireofmovies	|	marie 🌷	|	310729533
-RT @musicnewsfact: Taylor Swift held a moment of silence for Aretha Franklin last night at her Detroit show at Ford Field. 😭❤ https://t.co/…
+FettGeo	|	Elric the Damned	|	763507025556934656
+RT @temp_worker: Must read regarding $TSLA part shortage @Trumpery45.
+Rear ended Model S waiting 5.5 months and counting for parts while ow…
 
-https://twitter.com/empireofmovies/status/1034812929420533760
+https://twitter.com/FettGeo/status/1034813673049489408
 <a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
 
 ---------------------------------------
-sevenwhalien52	|	☆*🌙💜BTS 💜🌙*☆	|	892198596359200769
-RT @wmag: #BTS reportedly set a new YouTube record for the highest number of views in 24 hours. https://t.co/upxf69vJnu #Idol
-
-https://twitter.com/sevenwhalien52/status/1034812927675645953
-<a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android</a>
-
----------------------------------------
-JosefaQuiroz16	|	Josefa Quiroz	|	891849946189750277
-RT @CNN: Korean pop group BTS beats Taylor Swift's record for biggest YouTube debut with the music video for its song "Idol" https://t.co/G…
-
-https://twitter.com/JosefaQuiroz16/status/1034812916791500806
-<a href="http://twitter.com/download/iphone" rel="nofollow">Twitter for iPhone</a>
-
----------------------------------------
-
-
 
 ```
 
