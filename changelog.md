@@ -1,6 +1,15 @@
 # Change Log
 
-0.3 - TBD
+0.4 - TBD
+
+- Created `morning_coffee()` function to search for relevant data, based on the
+`morning-filter.ini` terms defined.
+- Added `morning-filter-example.ini` and related .gitignore entry for ease of 
+use by others.
+- Updated readme to contain general and advanced usage sections. It only contained info
+on the app-only auth functions previously.
+
+0.3 - 08/29/18 - Branch complete.
 
 - Created `oauth1selfsearch()` to do a list of last ten tweets of the user timeline. This is
 for the user named in `search.ini` under `param=`.

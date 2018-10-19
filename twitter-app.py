@@ -235,8 +235,72 @@ def app_only_auth_fulldata(x):  # Uses OAuth2
             print('Did not work, key error in function app_only_auth_fulldata()')
     return
 
+
+def morning_coffee():  # Uses OAuth2
+    debug.append('morning_coffee() function start.')
+    '''
+    Pull search terms in from morning-filter.ini
+        [q1]
+        [q1]
+        [q3]
+        [q4]
+        [q5]
+        [result-type]
+        [count]
+    '''
+    terms = configparser.ConfigParser()
+    try:
+        terms.read('conf/morning-filter.ini')
+    except:
+        debug.append('Failed to load morning-filter.ini to terms.')
+    search_headers = {
+        'Authorization': 'Bearer {}'.format(bearertoken)
+    }
+    for i in range(1,4): # Where 4 is ONE MORE than how many items you want to search on.
+        search_params = {
+            'q': terms['oauth2_params']['q'+str(i)],
+            'result_type': terms['oauth2_params']['result_type'],
+            'count': terms['oauth2_params']['count'],
+            'lang': 'en'  # Only returns English results. This can be removed.
+        }
+
+        search_url = '{}1.1/search/tweets.json'.format(base_url)
+        debug.append('\tExecuting search using Application-only (OAUTH2) Authentication...')
+        debug.append('\t---------------------------------------')
+        search_resp = requests.get(search_url, headers=search_headers, params=search_params)
+        tweet_data = search_resp.json()
+        '''
+        Prints all relevant data for keys and values. This can help inform the data you want to return. Examples are:
+            created_at
+            id_str
+            text
+            entities: hashtags, indices, symbols, user_mentions, etc
+            user: id, id_str, name, screen_name, location, description, url, followers_count, friends_count, listed_count, created_at, favourites_count, etc.
+            source
+            geo_enabled
+            lang
+            profile_image_url_https
+            profile_banner_url
+            possibly_sensitive
+    
+        For multi-part (nested dictionary values, in python-speak) attributes, usage is print(x['top level']['next level']) like x['user']['id_str']
+        Careful of using id as it is type int, not str
+        '''
+        try:
+            print(tweet_data['errors'])
+        except:
+            debug.append('\tNo errors in app_only_auth_search(). for term ' + str(i))
+        # for key in tweet_data['statuses']:
+        #     print (key)
+        returnDataNotLabeled(tweet_data)
+        # print(str(i))
+        tweets.append('\n' + '*' * 40)
+        tweets.append('End of search on criteria set in q'+str(i))
+        tweets.append('*' * 40 + '\n')
+    return
+
 def returnDataLabeled(tweet_data):
-    debug.append('returnDataLabeled() function start.')
+    debug.append('\treturnDataLabeled() function start.')
     for x in tweet_data['statuses']:
         try:
             tweets.append('User (screen_name, name, id): ' + x['user']['screen_name'] + '\t|\t' + x['user']['name'] + '\t|\t' + x['user']['id_str'])
@@ -251,7 +315,7 @@ def returnDataLabeled(tweet_data):
     return
 
 def returnDataNotLabeled(tweet_data):
-    debug.append('returnDataNotLabeled() function start.')
+    debug.append('\treturnDataNotLabeled() function start.')
     for x in tweet_data['statuses']:
         try:
             tweets.append(x['user']['screen_name'] + '\t|\t' + x['user']['name'] + '\t|\t' + x['user']['id_str'])
@@ -462,12 +526,12 @@ def main():
     oauthFlow()
 
     # Interaction functions
-    app_only_auth_search()
+    # app_only_auth_search()
     # app_only_auth_fulldata(searchconf['oauth2_params']['tweet_id_fulldata'])   # x is the tweet status
     # oauth1selfsearch()
     # oauth1createtweet()
     # oauth1deletetweet()
-
+    morning_coffee()
 
     # Writing Results
     debugOut()
