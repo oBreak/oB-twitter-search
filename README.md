@@ -1,13 +1,21 @@
 #Twitter API Searching
 
-
 ### Author
 
 oBreak ([email](mailto:obreakemail@gmail.com))
 
 ### Version
 
-0.3
+0.4
+
+### Contents
+
+- Author
+- Version
+- First time setup
+- General usage
+- Advanced usage
+- Sample output and debug
 
 ### First time setup
 
@@ -48,9 +56,9 @@ this repository with the appropriate data, the program should automatically
 extract the keys and request a bearer token. This bearer token will be saved
 as `bearer.token` in the `/conf/` directory and will be passed for future requests.
 
-### Usage
+### General Usage
 
-Currently the app is set to search based on the terms in the `/conf/search.ini`. Edit 
+Currently, the app is set to search based on the terms in the `/conf/search.ini`. Edit 
 the `/conf/public-search-terms.ini` and save as `/conf/search.ini` to whatever you would 
 prefer to search for. Search parameter selection code (this can be edited to provide
 other search terms as desired):
@@ -67,6 +75,14 @@ The app will then return the relevant data for those tweets.
 Output will be dropped in the `/out/` folder and logs of the application
 working (to include OAuth, searching, variable values, etc.) will
 go to the `/debug/` folder with a timestamp.
+
+### Advanced Usage
+
+To use the "morning coffee" option, save `morning-filter-example.ini` as 
+`morning-filter.ini`. This function allows a user to search based on terms
+q1 to q5 in a single search. I like this function for searching on topics
+that are relevant for me to know in the morning. Things like "Is my company in
+the news?"
 
 ##### Example debug log
 

@@ -33,4 +33,5 @@ tweets with cursing)
 - [Complete] Function to delete own tweets
 - [Complete] Function to return all keys from tweet
 - [Complete] Clean up debug output for usability
+- [Complete] Add sequential searching by filter to 'morning_coffee' function.
 
