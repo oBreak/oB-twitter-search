@@ -499,13 +499,17 @@ def tweetsOutFile():
         print("\tFailed to open out file!")
         f.close()
     for j in tweets:
-        f.write(str(j))
-        f.write(lineBreaks)  # This is to add a new line at the end of each line of the log or text file.
-        n = n + 1
-        if n % 100 == 0:
-            print('\tWriting outputs: ' + str(n) + ' lines complete.')
-        else:
-            pass
+        try:
+            f.write(str(j))
+            f.write(lineBreaks)  # This is to add a new line at the end of each line of the log or text file.
+            n = n + 1
+            if n % 100 == 0:
+                print('\tWriting outputs: ' + str(n) + ' lines complete.')
+            else:
+                pass
+        except UnicodeEncodeError:
+            debug.append("Unicode Encoding Error in tweet.\n")
+            f.write("Unicode Encoding Error, cannot display result.\n")
     else:
         pass
     print('\tOutput complete: ' + str(n) + ' lines written.')
